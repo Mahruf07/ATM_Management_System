@@ -23,7 +23,7 @@ public class Login extends JFrame implements ActionListener {
         add(label);
 
         JLabel text = new JLabel("Welcome to the ATM");
-        text.setBounds(200,50,400,40);
+        text.setBounds(250,50,400,40);
         text.setFont(new Font("Courier",Font.BOLD,35));
         add(text);
 
@@ -70,7 +70,9 @@ public class Login extends JFrame implements ActionListener {
         getContentPane().setBackground(Color.white);
 
         setSize(800,480);
+        setLocation(350,250);
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
