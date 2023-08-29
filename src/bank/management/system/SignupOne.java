@@ -4,16 +4,24 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 import com.toedter.calendar.JDateChooser;
 
-public class SignupOne extends JFrame {
+public class SignupOne extends JFrame implements ActionListener {
+    long random;
+    JTextField nameTextField,fnameTextField,religionTextField,mobileNumberTextField,emailTextField,addressTextField,divisionTextField,districtTextField,upazilaTextField,
+               postCodeTextField;
+    JButton next;
+    JRadioButton male,female,married,unmarried;
+    JDateChooser dateSelect;
 
     SignupOne(){
         setLayout(null);
 
         Random rand = new Random();
-        long random = Math.abs((rand.nextLong() % 9000L) + 1000L);
+        random = Math.abs((rand.nextLong() % 9000L) + 1000L);
 
         JLabel formNo = new JLabel("Form Number: " + random);
         formNo.setBounds(220,20,400,40);
@@ -41,7 +49,7 @@ public class SignupOne extends JFrame {
         // Combine rounded border with padded border
         Border compoundBorder = BorderFactory.createCompoundBorder(roundedBorder,paddedBorder);
 
-        JTextField nameTextField = new JTextField();
+        nameTextField = new JTextField();
         nameTextField.setBounds(300,150,400,30);
         nameTextField.setBorder(compoundBorder);
         nameTextField.setFont(new Font("Rale way",Font.BOLD,14));
@@ -52,7 +60,7 @@ public class SignupOne extends JFrame {
         dob.setFont(new Font("Rale way",Font.BOLD,20));
         add(dob);
 
-        JDateChooser dateSelect = new JDateChooser();
+        dateSelect = new JDateChooser();
         dateSelect.setBounds(300,190,400,30);
         dateSelect.setBackground(Color.white);
         dateSelect.setBorder(compoundBorder);
@@ -63,7 +71,7 @@ public class SignupOne extends JFrame {
         fName.setFont(new Font("Rale way",Font.BOLD,20));
         add(fName);
 
-        JTextField fnameTextField = new JTextField();
+        fnameTextField = new JTextField();
         fnameTextField.setBounds(300,230,400,30);
         fnameTextField.setBorder(compoundBorder);
         fnameTextField.setFont(new Font("Rale way",Font.BOLD,14));
@@ -74,12 +82,12 @@ public class SignupOne extends JFrame {
         gender.setFont(new Font("Rale way",Font.BOLD,20));
         add(gender);
 
-        JRadioButton male = new JRadioButton("Male");
+        male = new JRadioButton("Male");
         male.setBounds(310,270,100,30);
         male.setBackground(Color.white);
         add(male);
 
-        JRadioButton female = new JRadioButton("Female");
+        female = new JRadioButton("Female");
         female.setBounds(430,270,100,30);
         female.setBackground(Color.white);
         add(female);
@@ -93,7 +101,7 @@ public class SignupOne extends JFrame {
         religion.setFont(new Font("Rale way",Font.BOLD,20));
         add(religion);
 
-        JTextField religionTextField = new JTextField();
+        religionTextField = new JTextField();
         religionTextField.setBounds(300,310,400,30);
         religionTextField.setBorder(compoundBorder);
         religionTextField.setFont(new Font("Rale way",Font.BOLD,14));
@@ -104,7 +112,7 @@ public class SignupOne extends JFrame {
         mobileNumber.setFont(new Font("Rale way",Font.BOLD,20));
         add(mobileNumber);
 
-        JTextField mobileNumberTextField = new JTextField();
+        mobileNumberTextField = new JTextField();
         mobileNumberTextField.setBounds(300,350,400,30);
         mobileNumberTextField.setBorder(compoundBorder);
         mobileNumberTextField.setFont(new Font("Rale way",Font.BOLD,14));
@@ -115,7 +123,7 @@ public class SignupOne extends JFrame {
         email.setFont(new Font("Rale way",Font.BOLD,20));
         add(email);
 
-        JTextField emailTextField = new JTextField();
+        emailTextField = new JTextField();
         emailTextField.setBounds(300,390,400,30);
         emailTextField.setBorder(compoundBorder);
         emailTextField.setFont(new Font("Rale way",Font.BOLD,14));
@@ -126,12 +134,11 @@ public class SignupOne extends JFrame {
         maritalStatus.setFont(new Font("Rale way",Font.BOLD,20));
         add(maritalStatus);
 
-        JRadioButton married = new JRadioButton("Married");
+        married = new JRadioButton("Married");
         married.setBounds(310,430,100,30);
         married.setBackground(Color.white);
         add(married);
-
-        JRadioButton unmarried = new JRadioButton("Unmarried");
+        unmarried = new JRadioButton("Unmarried");
         unmarried.setBounds(430,430,100,30);
         unmarried.setBackground(Color.white);
         add(unmarried);
@@ -145,7 +152,7 @@ public class SignupOne extends JFrame {
         address.setFont(new Font("Rale way",Font.BOLD,20));
         add(address);
 
-        JTextField addressTextField = new JTextField();
+        addressTextField = new JTextField();
         addressTextField.setBounds(300,470,400,30);
         addressTextField.setBorder(compoundBorder);
         addressTextField.setFont(new Font("Rale way",Font.BOLD,14));
@@ -156,7 +163,7 @@ public class SignupOne extends JFrame {
         division.setFont(new Font("Rale way",Font.BOLD,20));
         add(division);
 
-        JTextField divisionTextField = new JTextField();
+        divisionTextField = new JTextField();
         divisionTextField.setBounds(300,510,400,30);
         divisionTextField.setBorder(compoundBorder);
         divisionTextField.setFont(new Font("Rale way",Font.BOLD,14));
@@ -167,7 +174,7 @@ public class SignupOne extends JFrame {
         district.setFont(new Font("Rale way",Font.BOLD,20));
         add(district);
 
-        JTextField districtTextField = new JTextField();
+        districtTextField = new JTextField();
         districtTextField.setBounds(300,550,400,30);
         districtTextField.setBorder(compoundBorder);
         districtTextField.setFont(new Font("Rale way",Font.BOLD,14));
@@ -178,7 +185,7 @@ public class SignupOne extends JFrame {
         upazila.setFont(new Font("Rale way",Font.BOLD,20));
         add(upazila);
 
-        JTextField upazilaTextField = new JTextField();
+        upazilaTextField = new JTextField();
         upazilaTextField.setBounds(300,590,400,30);
         upazilaTextField.setBorder(compoundBorder);
         upazilaTextField.setFont(new Font("Rale way",Font.BOLD,14));
@@ -189,17 +196,18 @@ public class SignupOne extends JFrame {
         postCode.setFont(new Font("Rale way",Font.BOLD,20));
         add(postCode);
 
-        JTextField postCodeTextField = new JTextField();
+        postCodeTextField = new JTextField();
         postCodeTextField.setBounds(300,630,400,30);
         postCodeTextField.setBorder(compoundBorder);
         postCodeTextField.setFont(new Font("Rale way",Font.BOLD,14));
         add(postCodeTextField);
 
-        JButton next = new JButton("Next");
+        next = new JButton("Next");
         next.setBounds(640,680,80,30);
         next.setBackground(new Color(36, 160, 237));
         next.setForeground(Color.white);
         next.setFont(new Font("Rale way",Font.PLAIN,15));
+        next.addActionListener(this);
         add(next);
 
         setSize(800,780);
@@ -207,6 +215,63 @@ public class SignupOne extends JFrame {
         getContentPane().setBackground(Color.white);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void actionPerformed(ActionEvent ae){
+        String formNo = "" + random;
+        String name = nameTextField.getText();
+        String fname = fnameTextField.getText();
+        String dob = ((JTextField)dateSelect.getDateEditor().getUiComponent()).getText();
+        String gender = "";
+        if (male.isSelected()){
+            gender = "Male";
+        } else if (female.isSelected()) {
+            gender = "Female";
+        }
+
+        String maritialStatus = "";
+        if (married.isSelected()){
+            maritialStatus = "Married";
+        }
+        else if (unmarried.isSelected()){
+            maritialStatus = "Unmarried";
+        }
+        String religion = religionTextField.getText();
+        String mobileNo = mobileNumberTextField.getText();
+        String email = emailTextField.getText();
+        String address = addressTextField.getText();
+        String division = divisionTextField.getText();
+        String district = districtTextField.getText();
+        String upazila = upazilaTextField.getText();
+        String postCode = postCodeTextField.getText();
+
+        try {
+            if (name.equals("")){
+                JOptionPane.showMessageDialog(null,"Name is Required");
+            }else {
+                Conn c = new Conn();
+                String query = "insert into customer_information (" +
+                                                          "form_no,\n" +
+                                                          "name \t ,\n" +
+                                                          "father_name,"+
+                                                          "dob \t ,\n" +
+                                                          "gender ,\t\n" +
+                                                          "maritial_status,\n" +
+                                                          "religion  ,\n" +
+                                                          "mobile_no ,\n" +
+                                                          "email \t,\n" +
+                                                          "address   ,\n" +
+                                                          "division  ,\n" +
+                                                          "district  ,\n" +
+                                                          "upazilla  ,\n" +
+                                                          "post_code )\n" +
+                        "Values('"+formNo+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+maritialStatus+"','"+religion+"','"+mobileNo+"','"+email+"','"+address+"','"+division+"','"
+                        +district+"','"+upazila+"','"+postCode
+                        +"')";
+                c.statement.executeUpdate(query);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public static void main(String[] args) {
