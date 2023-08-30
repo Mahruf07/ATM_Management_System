@@ -10,12 +10,13 @@ import java.util.Random;
 import com.toedter.calendar.JDateChooser;
 
 public class SignupOne extends JFrame implements ActionListener {
-    long random;
-    JTextField nameTextField,fnameTextField,religionTextField,mobileNumberTextField,emailTextField,addressTextField,divisionTextField,districtTextField,upazilaTextField,
+    static long random;
+    JTextField nameTextField,fnameTextField,mobileNumberTextField,emailTextField,addressTextField,divisionTextField,districtTextField,upazilaTextField,
                postCodeTextField;
     JButton next;
     JRadioButton male,female,married,unmarried;
     JDateChooser dateSelect;
+    JComboBox religionTextField;
 
     SignupOne(){
         setLayout(null);
@@ -101,9 +102,12 @@ public class SignupOne extends JFrame implements ActionListener {
         religion.setFont(new Font("Rale way",Font.BOLD,20));
         add(religion);
 
-        religionTextField = new JTextField();
+        String[] religionList = {"Islam","Hindu","Christian","Buddhism","Others"};
+
+        religionTextField = new JComboBox(religionList);
         religionTextField.setBounds(300,310,400,30);
         religionTextField.setBorder(compoundBorder);
+        religionTextField.setBackground(Color.white);
         religionTextField.setFont(new Font("Rale way",Font.BOLD,14));
         add(religionTextField);
 
@@ -216,6 +220,7 @@ public class SignupOne extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
     public void actionPerformed(ActionEvent ae){
         String formNo = "" + random;
         String name = nameTextField.getText();
@@ -235,7 +240,7 @@ public class SignupOne extends JFrame implements ActionListener {
         else if (unmarried.isSelected()){
             maritialStatus = "Unmarried";
         }
-        String religion = religionTextField.getText();
+        String religion = (String) religionTextField.getSelectedItem();
         String mobileNo = mobileNumberTextField.getText();
         String email = emailTextField.getText();
         String address = addressTextField.getText();
