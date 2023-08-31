@@ -273,6 +273,8 @@ public class SignupOne extends JFrame implements ActionListener {
                         +district+"','"+upazila+"','"+postCode
                         +"')";
                 c.statement.executeUpdate(query);
+                setVisible(false);
+                new SignupTwo().setVisible(true);
             }
         }catch (Exception e){
             System.out.println(e);

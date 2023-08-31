@@ -12,6 +12,7 @@ public class SignupTwo extends JFrame implements ActionListener {
     JComboBox occupationOptions,yearlyIncomeOptions,educationQualOptions;
     JTextField identificationNumberTextField;
     JRadioButton sYes,sNo;
+    JButton next;
 
     SignupTwo(){
         setLayout(null);
@@ -120,6 +121,14 @@ public class SignupTwo extends JFrame implements ActionListener {
         seniorCitizenBool.add(sYes);
         seniorCitizenBool.add(sNo);
 
+        next = new JButton("Next");
+        next.setBounds(600,480,80,30);
+        next.setBackground(new Color(36, 160, 237));
+        next.setForeground(Color.white);
+        next.setFont(new Font("Rale way",Font.PLAIN,15));
+        next.addActionListener(this);
+        add(next);
+
 
 
         setSize(800,550);
@@ -142,14 +151,19 @@ public class SignupTwo extends JFrame implements ActionListener {
         else if (sNo.isSelected()){
             isSeniorCitizen = "No";
         }
+        String formNumber = ""+ SignupOne.random;
 
         try {
             if (sIdentificationNumber == ""){
                 JOptionPane.showMessageDialog(null,"Enter Nid / Birth Certificate Number");
             }else {
                 Conn c = new Conn();
-                String query = "";
+                String query = "INSERT INTO customer_supplementary " +
+                        "(occupation, yearly_income, educational_qualification, is_senior_citizen, identification_number, form_number) " +
+                        "VALUES ('" + sOccupation + "', '" + sYearlyIncome + "', '" + sEducationQualification + "', '" + isSeniorCitizen + "', '" + sIdentificationNumber + "','"+formNumber+"')";
+
                 c.statement.executeUpdate(query);
+                setVisible(false);
             }
 
         }catch (Exception e){
