@@ -22,7 +22,7 @@ public class SignupTwo extends JFrame implements ActionListener {
         formNo.setFont(new Font("Rale way",Font.BOLD,35));
         add(formNo);
 
-        JLabel additionalDetails = new JLabel("Additional Information");
+        JLabel additionalDetails = new JLabel("Page-2: Additional Information");
         additionalDetails.setBounds(250,70,300,40);
         additionalDetails.setFont(new Font("Rale way",Font.BOLD,25));
         add(additionalDetails);
@@ -164,6 +164,7 @@ public class SignupTwo extends JFrame implements ActionListener {
 
                 c.statement.executeUpdate(query);
                 setVisible(false);
+                new SignupThree().setVisible(true);
             }
 
         }catch (Exception e){
