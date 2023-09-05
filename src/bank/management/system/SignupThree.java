@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class SignupThree extends JFrame implements ActionListener {
 
@@ -137,6 +138,7 @@ public class SignupThree extends JFrame implements ActionListener {
         add(c7);
 
         b1 = new JButton("Submit");
+        b1.addActionListener(this);
         b1.setBackground(Color.WHITE);
         b1.setBackground(new Color(36, 160, 237));
         b1.setForeground(Color.white);
@@ -145,6 +147,7 @@ public class SignupThree extends JFrame implements ActionListener {
         add(b1);
 
         b2 = new JButton("Cancel");
+        b2.addActionListener(this);
         b2.setBackground(Color.WHITE);
         b2.setBackground(new Color(36, 160, 237));
         b2.setForeground(Color.white);
@@ -161,6 +164,45 @@ public class SignupThree extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae){
+        if (ae.getSource() == "Submit"){
+            String accountType = null;
+            if (r1.isSelected()){
+                accountType = "Savings Account";
+            }else if (r2.isSelected()){
+                accountType = "Fixed Deposit Account(FDR)";
+            } else if (r3.isSelected()) {
+                accountType = "Current Account";
+            }else if (r4.isSelected()){
+                accountType = "Recurring Deposit Account";
+            }
+
+            Random ran = new Random();
+            long rand = (ran.nextLong() % 90000000) + 5094093600000000L;
+            String cardNo = "" + Math.abs(rand);
+
+            int randPin = (ran.nextInt() % 9000) + 1000;
+            String pin = "" + randPin;
+
+            String services = "";
+            if (c1.isSelected()){
+                services = "" + "ATM Card";
+            }else if (c2.isSelected()){
+
+            }else if (c3.isSelected()){
+
+            }else if (c4.isSelected()){
+
+            }else if (c5.isSelected()){
+
+            }else if (c6.isSelected()){
+
+            }else if (c7.isSelected()){
+
+            }
+
+        } else if (ae.getSource() == "Cancel") {
+
+        }
 
     }
 
