@@ -1,5 +1,6 @@
 package bank.management.system;
 
+import javax.print.attribute.standard.JobPrioritySupported;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -164,7 +165,10 @@ public class SignupThree extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae){
-        if (ae.getSource() == "Submit"){
+        String formNo = ""+SignupOne.random;
+ //       String formNo = "2126";
+
+        if (ae.getSource() == b1){
             String accountType = null;
             if (r1.isSelected()){
                 accountType = "Savings Account";
@@ -177,7 +181,7 @@ public class SignupThree extends JFrame implements ActionListener {
             }
 
             Random ran = new Random();
-            long rand = (ran.nextLong() % 90000000) + 5094093600000000L;
+            long rand = ((ran.nextLong() % 90000000) + 5094093600000000L);
             String cardNo = "" + Math.abs(rand);
 
             int randPin = (ran.nextInt() % 9000) + 1000;
@@ -185,19 +189,35 @@ public class SignupThree extends JFrame implements ActionListener {
 
             String services = "";
             if (c1.isSelected()){
-                services = "" + "ATM Card";
+                services = "" + " ATM Card";
             }else if (c2.isSelected()){
-
+                services = services + " Internet Banking";
             }else if (c3.isSelected()){
-
+                services = services + " Mobile Banking";
             }else if (c4.isSelected()){
-
+                services = services + " Email Alert";
             }else if (c5.isSelected()){
-
+                services = services + " Cheque Book";
             }else if (c6.isSelected()){
+                services = services + " E-Statement";
+            }
 
-            }else if (c7.isSelected()){
+            try{
+                if (accountType.equals("")){
+                    JOptionPane.showMessageDialog(null,"Account Type is Required");
+                }else {
+                    Conn connection = new Conn();
+                    String query1 = "INSERT INTO account_information (form_number, account_type, cardNo, pin, services) " +
+                            "VALUES ('" + formNo + "', '" + accountType + "', '" + cardNo + "', '" + pin + "', '" + services + "')";
+                    String query2 = "INSERT INTO login_info (form_number,cardNo,pin)" +"VALUES ('" + formNo + "', '" + cardNo + "', '" + pin + "')";
+                    connection.statement.executeUpdate(query1);
+                    connection.statement.executeUpdate(query2);
 
+                    JOptionPane.showMessageDialog(null,"Card Number"+ cardNo + "\n Pin: " + pin);
+                }
+
+            }catch (Exception e){
+                System.out.println(e);
             }
 
         } else if (ae.getSource() == "Cancel") {
