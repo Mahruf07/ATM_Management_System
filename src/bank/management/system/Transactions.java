@@ -9,6 +9,7 @@ public class Transactions extends JFrame implements ActionListener {
     JButton deposit,withdraw,fastCash,miniStatement,pinChange,balanceInquiry,exit;
     String pinNumber;
     Transactions(String pin){
+
         this.pinNumber = pin;
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/atm.jpg"));
@@ -84,6 +85,9 @@ public class Transactions extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae){
         if (ae.getSource() == exit){
             System.exit(0);
+        } else if (ae.getSource() == deposit) {
+            setVisible(false);
+            new Deposit(pinNumber).setVisible(true);
         }
     }
 

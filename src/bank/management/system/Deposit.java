@@ -12,7 +12,6 @@ public class Deposit extends JFrame implements ActionListener {
     String pinNumber;
 
     Deposit(String pin){
-        setLayout(null);
         this.pinNumber = pin;
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/atm.jpg"));
@@ -65,7 +64,10 @@ public class Deposit extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null,"Please enter the amount you want to Deposit");
                 }else {
                     Conn connection = new Conn();
-                    
+                    connection.statement.executeUpdate("INSERT INTO bank (pin, date, amount) VALUES ('" + pinNumber + "', '" + date + "', '" + amount + "')");
+                    JOptionPane.showMessageDialog(null,"Tk " + amount + "deposited successfully");
+                    setVisible(false);
+                    new Transactions(pinNumber).setVisible(true);
                 }
             } else if (ae.getSource() == back) {
                 setVisible(false);
@@ -78,6 +80,6 @@ public class Deposit extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new Deposit("");
+        new Deposit("").setVisible(true);
     }
 }
